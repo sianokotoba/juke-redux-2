@@ -1,12 +1,15 @@
 import React from 'react';
 import { convertAlbum, convertSong } from '../containers/AppContainer';
-import { fetchAlbumsFromServer } from '../actions';
+
 
 
 class Albums extends React.Component {
 
   componentDidMount () {
-   fetchAlbumsFromServer();
+    // console.log(this.props.loadAlbums)
+    console.log(this.props)
+    this.props.loadAlbums();
+
   }
 
   render() {
@@ -19,7 +22,7 @@ class Albums extends React.Component {
               <img src="http://placeholdit.imgix.net/~text?txtsize=33&txt=ALBUMoneIMAGE&w=300&h=300" />
               <div className="caption">
                 <h5>
-                  <span>ALBUM 1 NAME</span>
+                  <span>{this.props.albums[0]}</span>
                 </h5>
                 <small>NUMBER OF SONGS HERE songs</small>
               </div>

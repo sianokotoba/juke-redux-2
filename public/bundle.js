@@ -21756,8 +21756,6 @@
 	
 	var _AppContainer = __webpack_require__(172);
 	
-	var _actions = __webpack_require__(177);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21778,7 +21776,9 @@
 	  _createClass(Albums, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      (0, _actions.fetchAlbumsFromServer)();
+	      // console.log(this.props.loadAlbums)
+	      console.log(this.props);
+	      this.props.loadAlbums();
 	    }
 	  }, {
 	    key: 'render',
@@ -21810,7 +21810,7 @@
 	                  _react2.default.createElement(
 	                    'span',
 	                    null,
-	                    'ALBUM 1 NAME'
+	                    this.props.albums[0]
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -23942,13 +23942,15 @@
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 	  return {
-	    view: function view() {
-	      return dispatch((0, _actions.receiveAlbums)());
+	    loadAlbums: function loadAlbums() {
+	      return dispatch((0, _actions.fetchAlbumsFromServer)());
 	    }
 	  };
 	};
 	
 	var AlbumConnector = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Albums2.default);
+	// this is where Albums gets { albums } and is able to call it 'this.props' within the Albums.js file.
+	// Additionally, any functions in the 'mapDispatchToProps' will also be available on the this.props. Similarly, anything from the state passed to 'mapStateToProps' will also be available on the this.props. The 'connect' function makes this happen
 	
 	exports.default = AlbumConnector;
 
