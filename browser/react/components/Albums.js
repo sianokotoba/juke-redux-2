@@ -1,19 +1,13 @@
 import React from 'react';
-import {convertAlbum, convertSong} from '../containers/AppContainer';
+import { convertAlbum, convertSong } from '../containers/AppContainer';
+import { fetchAlbumsFromServer } from '../actions';
 
 
 class Albums extends React.Component {
 
   componentDidMount () {
-   fetch('/api/albums')
-        .then(res => res.json())
-        .then(album => console.log(album));
-
-      // AUDIO.addEventListener('ended', () =>
-      //   this.next());
-      // AUDIO.addEventListener('timeupdate', () =>
-      //   this.setProgress(AUDIO.currentTime / AUDIO.duration));
-    }
+   fetchAlbumsFromServer();
+  }
 
   render() {
     return (
@@ -25,7 +19,7 @@ class Albums extends React.Component {
               <img src="http://placeholdit.imgix.net/~text?txtsize=33&txt=ALBUMoneIMAGE&w=300&h=300" />
               <div className="caption">
                 <h5>
-                  <span>{}</span>
+                  <span>ALBUM 1 NAME</span>
                 </h5>
                 <small>NUMBER OF SONGS HERE songs</small>
               </div>
