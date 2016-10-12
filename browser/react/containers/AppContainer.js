@@ -5,6 +5,9 @@ import React, { Component } from 'react';
 import initialState from '../initialState';
 import AUDIO from '../audio';
 
+/* If we uncomment the line below, we get TypeError: Cannot read property 'displayName' of undefined*/
+//import AppConnector from './AppConnect';
+
 import Sidebar from '../components/Sidebar';
 import Album from '../components/Album';
 import Player from '../components/Player';
@@ -48,10 +51,11 @@ export default class AppContainer extends Component {
       .then(res => res.json())
       .then(album => this.onLoad(convertAlbum(album)));
 
-    AUDIO.addEventListener('ended', () =>
-      this.next());
-    AUDIO.addEventListener('timeupdate', () =>
-      this.setProgress(AUDIO.currentTime / AUDIO.duration));
+      AUDIO.addEventListener('ended', () =>
+        this.next());
+      AUDIO.addEventListener('timeupdate', () =>
+        this.setProgress(AUDIO.currentTime / AUDIO.duration));
+
   }
 
   onLoad (album) {

@@ -1,24 +1,30 @@
 import { connect } from 'react-redux';
-import Albums from './Albums';
-import { fetchAlbumsFromServer, fetchAlbumOneFromServer } from '../actions';
+import AppContainer from './AppContainer';
+import { fetchAlbumsFromServer, play, pause, load, startSong, toggle, toggleOne } from '../actions';
 
 
-const mapStateToProps = ({ albums, songs }) => ({
-  albums,
+const mapStateToProps = ({ album, artists, songs}) => ({
+  album,
+  artists,
   songs
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadAlbums: () => dispatch(fetchAlbumsFromServer()),
-  loadSongs: () => dispatch(fetchAlbumOneFromServer())
+  playSong: () => dispatch(play()),
+  pauseSong: () => dispatch(pause()),
+  loadSong: () => dispatch(load()),
+  startSong: () => dispatch(startSong()),
+  toggleSong: () => dispatch(toggle()),
+  toggleOne: () => dispatch(toggleOne())
 })
 
-const AlbumConnector = connect(
+const AppConnector = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Albums);
+)(AppContainer);
 
 // this is where Albums gets { albums } and is able to call it 'this.props' within the Albums.js file.
 // Additionally, any functions in the 'mapDispatchToProps' will also be available on the this.props. Similarly, anything from the state passed to 'mapStateToProps' will also be available on the this.props. The 'connect' function makes this happen
 
-export default AlbumConnector;
+export default AppConnector;
