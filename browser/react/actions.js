@@ -23,12 +23,6 @@ function reducer (state = initialState, action) {
   }
 }
 
-console.log(initialState.albums);
-console.log(store.getState());
-console.log(store.dispatch({type: VIEW_ALL_ALBUMS, albums: ["this is an album"]}));
-console.log(store.getState());
-
-
 export default store;
 
 

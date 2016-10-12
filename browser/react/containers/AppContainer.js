@@ -9,13 +9,14 @@ import Sidebar from '../components/Sidebar';
 import Album from '../components/Album';
 import Player from '../components/Player';
 import Albums from '../components/Albums';
+import AlbumsConnector from '../components/AlbumsContainer'
 
-const convertSong = song => {
+export const convertSong = song => {
   song.audioUrl = `/api/songs/${song.id}/audio`;
   return song;
 };
 
-const convertAlbum = album => {
+export const convertAlbum = album => {
   album.imageUrl = `/api/albums/${album.id}/image`;
   album.songs = album.songs.map(convertSong);
   return album;
@@ -114,6 +115,7 @@ export default class AppContainer extends Component {
           <Sidebar />
         </div>
         <div className="col-xs-10">
+          <AlbumsConnector />
           <Album
             album={this.state.album}
             currentSong={this.state.currentSong}
